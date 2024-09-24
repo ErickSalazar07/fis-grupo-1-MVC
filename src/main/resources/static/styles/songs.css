@@ -1,0 +1,45 @@
+
+.song-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;  /* Blue background */
+    color: white;               /* White text */
+    text-align: center;         /* Center text */
+    text-decoration: none;      /* Remove underline */
+    border-radius: 5px;         /* Rounded corners */
+    font-size: 16px;            /* Font size */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover */
+}
+
+/* Hover effect */
+.link-button:hover {
+    background-color: #0056b3;  /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight upward movement */
+}
+
+/* Active state */
+.link-button:active {
+    background-color: #004080;  /* Even darker blue when clicked */
+    transform: translateY(1px);  /* Slight downward movement */
+}
+
+.add-song-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+}
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+}

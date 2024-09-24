@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create song</title>
+</head>
+<body>
+<h2>Create a New Song</h2>
+<form class="add-song-form" th:action="@{/songs}" th:object="${createSongDto}" method="post">
+  <label >
+    Title:
+    <input type="text" th:field="*{title}" />
+  </label>
+  <br>
+  <label>
+    Artist:
+    <input type="text" th:field="*{artist}" />
+  </label>
+  <br>
+  <label>
+    Genre:
+    <input type="text" th:field="*{genre}" />
+  </label>
+  <br>
+  <label>
+    Year:
+    <input type="text" th:field="*{year}" />
+  </label>
+  <br>
+  <label>
+    Album:
+    <input type="text" th:field="*{album}" />
+  </label>
+  <br>
+  <label>
+    Album Cover:
+    <input type="text" th:field="*{albumCover}" />
+  </label>
+  <br>
+  <label>
+    Duration:
+    <input type="text" th:field="*{duration}" />
+  </label>
+  <br>
+
+  <button class="submit-button" type="submit">
+    Submit
+  </button>
+</form>
+</body>
+</html>

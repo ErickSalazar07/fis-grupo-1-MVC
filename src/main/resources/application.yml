@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: music-shop
+  datasource:
+    url: jdbc:postgresql://ep-spring-sound-a5808511.us-east-2.aws.neon.tech/music-shop-group-1
+    username: music-shop_owner
+    password: ZXIr9QuGR3Mt
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+    properties:
+        boot:
+          allow_jdbc_metadata_access: false
+  sql:
+    init:
+      mode: never
