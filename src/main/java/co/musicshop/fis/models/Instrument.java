@@ -3,7 +3,6 @@ package co.musicshop.fis.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.swing.*;
 
 
 @Getter
@@ -34,5 +33,5 @@ public class Instrument {
     private Double price;
 
     @NonNull
-    private ImageIcon photo;
+    private String photo;
 }

@@ -34,11 +34,23 @@ public class SongController {
         return "songs"; // Refers to songs.html (view)
     }
 
-    @GetMapping("/add")
+    @GetMapping("/updateSong")
+    public String updateSongForm(@ModelAttribute("createSongDto") CreateSongDto createSongDto, Model model) {
+        model.addAttribute("song", createSongDto);
+        return "updateSong";
+    }
+
+    @GetMapping("/addSong")
     public String addSongForm(Model model) {
 
         model.addAttribute("createSongDto", new CreateSongDto());
-        return "add"; // Refers to add.html (view)
+        return "addSong"; // Refers to add.html (view)
+    }
+
+    @GetMapping("/deleteSong")
+    public String deleteSongForm(@ModelAttribute("createSongDto") CreateSongDto createSongDto, Model model) {
+        model.addAttribute("song", createSongDto);
+        return "deleteSong";
     }
 
     @PostMapping()

@@ -11,7 +11,8 @@
 
 <h1>Songs</h1>
 
-<a href="/songs/add" class="link-button">Add a new song</a>
+<a href="/instruments" class="link-button">Enter Instrument Section</a>
+<a href="/songs/addSong" class="link-button">Add a new song</a>
 
 <!-- Check if songs list is empty -->
 <div th:if="${#lists.isEmpty(songs)}">
@@ -23,7 +24,11 @@
     <li th:each="song : ${songs}">
         <div class="song-item">
             <span th:text="${song.title} + ' - ' + ${song.artist}"></span>
-            <img th:src="${song.albumCover}" th:alt="${song.album}" width="100" height="100"/>
+            <img th:src="${song.albumCover}" alt="Portada de Album" width="100" height="100"/>
+            <spa th:text="${song.album} + ' - ' + ${song.year}"></spa>
+            <spa th:text="${song.duration}"></spa>
+            <a href="songs/updateSong" class="link-button">Update</a>
+            <a href="songs/deleteSong" class="link-button">Delete</a>
         </div>
     </li>
 </ul>
