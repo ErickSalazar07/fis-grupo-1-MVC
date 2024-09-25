@@ -35,8 +35,9 @@ public class SongController {
     }
 
     @GetMapping("/updateSong")
-    public String updateSongForm(@ModelAttribute("createSongDto") CreateSongDto createSongDto, Model model) {
-        model.addAttribute("song", createSongDto);
+    public String updateSongForm(@ModelAttribute("createSongDto") CreateSongDto songDto, Model model) {
+
+        model.addAttribute("song", songDto);
         return "updateSong";
     }
 

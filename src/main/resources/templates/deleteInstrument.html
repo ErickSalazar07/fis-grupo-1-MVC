@@ -5,6 +5,15 @@
     <title>Delete Instrument</title>
 </head>
 <body>
-
+<h2>Delete Instrument</h2>
+<br>
+<form th:action="@{/instruments}" th:object="${createInstrumentDto}" method="post">
+    <label>
+        Title:
+        <input type="text" th:field="*{name}">
+    </label>
+    <br>
+    <button class="submit-button" type="submit">Submit</button>
+</form>
 </body>
 </html>

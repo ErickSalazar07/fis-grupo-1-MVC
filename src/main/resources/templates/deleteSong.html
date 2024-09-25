@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete Song</title>
 </head>
 <body>
-<form th:action="@{/songs}" th:object="${createSongDto}">
+<h2>Delete Song</h2>
+<br>
+<form th:action="@{/songs}" th:object="${createSongDto}" method="post">
   <label>
     Title:
     <input type="text" th:field="*{title}">
   </label>
+  <br>
+  <button class="submit-button" type="submit">Submit</button>
 </form>
 </body>
 </html>

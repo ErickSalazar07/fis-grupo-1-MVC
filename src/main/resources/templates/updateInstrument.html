@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Update Instrument</h2>
-<form class="add-instrument-form">
+<form class="add-instrument-form" th:action="@{/instruments}" th:object="${createInstrumentDto}" method="post">
   <label>
     Name:
     <input type="text"/>
