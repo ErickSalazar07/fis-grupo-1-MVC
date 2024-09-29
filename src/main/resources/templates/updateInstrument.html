@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Update Instrument</title>
 </head>
 <body>
 <h2>Update Instrument</h2>
-<form class="add-instrument-form" th:action="@{/instruments}" th:object="${createInstrumentDto}" method="post">
+<form th:action="@{/instruments/{instrumentId}/update(instrumentId=${instrument.id})}" th:object="${instrument}" method="post">
+  <input type="hidden" th:field="*{id}">
   <label>
     Name:
-    <input type="text"/>
+    <input type="text" th:field="*{name}"/>
   </label>
   <br>
   <label>
     Type:
-    <input type="text">
+    <input type="text" th:field="*{type}">
   </label>
   <br>
   <label>
     Brand:
-    <input type="text">
+    <input type="text" th:field="*{brand}">
   </label>
   <br>
   <label>
     Price:
-    <input type="text">
+    <input type="text" th:field="*{price}">
   </label>
   <br>
   <label>
     Photo:
-    <input type="text">
+    <input type="text" th:field="*{photo}">
   </label>
   <br>
   <button class="submit-button" type="submit">
     Submit
   </button>
 </form>
-
 </body>
 </html>

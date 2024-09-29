@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,27 +31,14 @@ public class SongController {
         return "songs"; // Refers to songs.html (view)
     }
 
-    @GetMapping("/updateSong")
-    public String updateSongForm(@ModelAttribute("createSongDto") CreateSongDto songDto, Model model) {
-
-        model.addAttribute("song", songDto);
-        return "updateSong";
-    }
-
-    @GetMapping("/addSong")
+    @GetMapping("/add")
     public String addSongForm(Model model) {
-
         model.addAttribute("createSongDto", new CreateSongDto());
         return "addSong"; // Refers to add.html (view)
     }
 
-    @GetMapping("/deleteSong")
-    public String deleteSongForm(@ModelAttribute("createSongDto") CreateSongDto createSongDto, Model model) {
-        model.addAttribute("song", createSongDto);
-        return "deleteSong";
-    }
 
-    @PostMapping()
+    @PostMapping("/songs/add")
     public String addSong(@ModelAttribute("createSongDto") CreateSongDto createSongDto, Model model) {
         // You can convert DTO to entity and process/save the song
         Song song = new Song(
@@ -76,6 +60,24 @@ public class SongController {
         return "redirect:/songs"; // Redirect to /songs
     }
 
+    @GetMapping("/{songId}/update")
+    public String updateSongForm(@PathVariable("songId") long songId, Model model) {
+        Song song = songService.findSongById(songId);
+        model.addAttribute("song", song);
+        return "updateSong";
+    }
 
+    @PostMapping("/{songId}/update")
+    public String updateSong(@PathVariable("songId") long songId, @ModelAttribute("song") Song song) {
+        song.setId(songId);
+        songService.updateSong(song);
+        return "redirect:/songs";
+    }
+
+    @GetMapping("/{songId}/delete")
+    public String deleteSong(@PathVariable("songId") long songId) {
+        songService.deleteSong(songId);
+        return "redirect:/songs";
+    }
 
 }

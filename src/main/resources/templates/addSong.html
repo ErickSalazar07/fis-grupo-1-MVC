@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Create a New Song</h2>
-<form class="add-song-form" th:action="@{/songs}" th:object="${createSongDto}" method="post">
+<form class="add-song-form" th:action="@{songs/add}" th:object="${createSongDto}" method="post">
   <label >
     Title:
     <input type="text" th:field="*{title}" />

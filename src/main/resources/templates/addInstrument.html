@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Instrument</title>
+    <link rel="stylesheet" th:href="@{/styles/instruments.css}">
 </head>
 <body>
 <h2>Create Instrument</h2>
-<form class="add-instrument-form" th:action="@{/instruments}" th:object="${createInstrumentDto}" method="post">
+<form class="add-instrument-form" th:action="@{/instruments/add}" th:object="${createInstrumentDto}" method="post">
     <label>
         Name:
-        <input type="text"/>
+        <input type="text" th:field="*{name}"/>
     </label>
     <br>
     <label>
         Type:
-        <input type="text">
+        <input type="text" th:field="*{type}">
     </label>
     <br>
     <label>
         Brand:
-        <input type="text">
+        <input type="text" th:field="*{brand}">
     </label>
     <br>
     <label>
         Price:
-        <input type="text">
+        <input type="text" th:field="*{price}">
     </label>
     <br>
     <label>
         Photo:
-        <input type="text">
+        <input type="text" th:field="*{photo}">
     </label>
     <br>
     <button class="submit-button" type="submit">

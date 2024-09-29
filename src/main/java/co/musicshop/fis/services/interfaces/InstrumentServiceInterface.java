@@ -1,5 +1,6 @@
 package co.musicshop.fis.services.interfaces;
 
+import co.musicshop.fis.dtos.CreateInstrumentDto;
 import co.musicshop.fis.models.Instrument;
 
 import java.util.List;

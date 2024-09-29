@@ -6,10 +6,7 @@ import co.musicshop.fis.models.Instrument;
 import co.musicshop.fis.services.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,32 +19,20 @@ public class InstrumentController {
     public InstrumentController(InstrumentService instrumentService) { this.instrumentService = instrumentService; }
 
 
-    @GetMapping
+    @GetMapping()
     public String allInstruments(Model model) {
         List<Instrument> instruments = instrumentService.findAllInstruments();
         model.addAttribute("instruments", instruments);
         return "instruments";
     }
 
-    @GetMapping("/addInstrument")
+    @GetMapping("/add")
     public String addInstrumentForm(Model model){
-        model.addAttribute("createSongDto", new CreateInstrumentDto());
+        model.addAttribute("createInstrumentDto", new CreateInstrumentDto());
         return "addInstrument";
     }
 
-    @GetMapping("/deleteInstrument")
-    public String deleteInstrument(@ModelAttribute("createInstrumentDto") CreateInstrumentDto createInstrumentDto, Model model){
-        model.addAttribute("instruments", createInstrumentDto);
-        return "deleteInstrument";
-    }
-
-    @GetMapping("/updateInstrument")
-    public String updateInstrumentForm(@ModelAttribute("createInstrumentDto") CreateInstrumentDto createInstrumentDto, Model model){
-        model.addAttribute("instrument", createInstrumentDto);
-        return "updateInstrument";
-    }
-
-    @PostMapping
+    @PostMapping("/add")
     public String addInstrument(@ModelAttribute("createInstrumentDto") CreateInstrumentDto createInstrumentDto, Model model) {
         Instrument instrument = new Instrument(
                 createInstrumentDto.getName(),
@@ -57,8 +42,27 @@ public class InstrumentController {
                 createInstrumentDto.getPhoto()
         );
 
-        this.instrumentService.saveInstrument(instrument);
-        model.addAttribute("instrument",instrument);
+        model.addAttribute("instrument", instrumentService.saveInstrument(instrument));
+        return "redirect:/instruments";
+    }
+
+    @GetMapping("/{instrumentId}/update")
+    public String updateInstrumentForm(@PathVariable("instrumentId") long instrumentId, Model model){
+        Instrument instrument = instrumentService.findInstrumentById(instrumentId);
+        model.addAttribute("instrument", instrument);
+        return "updateInstrument";
+    }
+
+    @PostMapping("/{instrumentId}/update")
+    public String updateInstrument(@PathVariable("instrumentId") long instrumentId, @ModelAttribute("instrument") Instrument instrument){
+        instrument.setId(instrumentId);
+        instrumentService.updateInstrument(instrument);
+        return "redirect:/instruments";
+    }
+
+    @GetMapping("/{instrumentId}/delete")
+    public String deleteInstrument(@PathVariable("instrumentId") long instrumentId, Model model){
+        instrumentService.deleteInstrument(instrumentId);
         return "redirect:/instruments";
     }
 }

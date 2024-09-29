@@ -1,5 +1,6 @@
 package co.musicshop.fis.services;
 
+import co.musicshop.fis.dtos.CreateSongDto;
 import co.musicshop.fis.models.Song;
 import co.musicshop.fis.repositories.SongRepository;
 import co.musicshop.fis.services.interfaces.SongServiceInterface;
@@ -39,7 +40,15 @@ public class SongService implements SongServiceInterface {
     }
 
     @Override
-    public Song findSongById(Long id) {
-        return songRepository.findById(id).orElse(null);
+    public Song findSongById(Long id) { return songRepository.findById(id).orElse(null); }
+
+    //TODO: Implement
+    private Song mapToSong(CreateSongDto songDto){
+        return null;
+    }
+
+    //TODO: Implement
+    private CreateSongDto mapToSongDto(Song song){
+        return null;
     }
 }
